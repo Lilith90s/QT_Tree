@@ -1,10 +1,11 @@
-#include "QGraphicsPractices.h"
+﻿#include "QGraphicsPractices.h"
 #include <QtWidgets/QApplication>
+#include "View.h"
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	QGraphicsPractices w;
-	w.show();
+	View view;
+	view.show();
 	return a.exec();
 }
