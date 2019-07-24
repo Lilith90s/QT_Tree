@@ -48,9 +48,18 @@
     <ClCompile Include="Curve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ZoomButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QGraphicsPractices.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ZoomButton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MyScene.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -65,16 +74,16 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Curve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="View.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyScene.h">
+    <ClInclude Include="MyItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
