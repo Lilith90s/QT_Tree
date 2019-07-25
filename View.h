@@ -6,14 +6,14 @@
 #include <qvector.h>
 #include "MyItem.h"
 #include "MyScene.h"
-
+#include <QWidget>
 
 
 class View :
 	public QGraphicsView
 {
 public:
-	View();
+	View(QWidget *parent = nullptr);
 	~View();
 
 protected:

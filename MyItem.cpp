@@ -5,6 +5,7 @@
 MyItem::MyItem( QString text, MyItem* father,  QGraphicsItem *parent) :
 	QGraphicsItem(parent)
 {
+	curve = new Curve();
 	this->father = father;
 	if (father != nullptr)
 	{
@@ -22,16 +23,33 @@ MyItem::MyItem( QString text, MyItem* father,  QGraphicsItem *parent) :
 	childs.clear();
 	m_text = text;
 	setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable);
+	// setFlags(QGraphicsItem::mov)
 	this->setAcceptedMouseButtons(Qt::LeftButton);
-	curve = new Curve();
+	
 	drawLigature();
 
-	//menuaddAction(nullptr, "add",this,SLOT());
 }
 
 
 MyItem::~MyItem()
 {
+	m_text = "";
+	
+	childs.clear();
+	if (father != nullptr)
+	{
+		father = nullptr;
+	}
+	if (curve != nullptr)
+	{
+		delete curve;
+		curve = nullptr;
+	}
+	if (zoombuttom != nullptr)
+	{
+		delete zoombuttom;
+		zoombuttom = nullptr;
+	}
 }
 
 
@@ -40,19 +58,30 @@ QRectF MyItem::boundingRect() const
 	return QRectF(0,0,m_iwidth,m_iheight);
 }
 
+QSizeF MyItem::sizeHint(Qt::SizeHint which, const QSizeF & constraint) const
+{
+	return QSizeF(m_iwidth,m_iheight);
+}
+
 void MyItem::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
 	painter->drawRect(0, 0, m_iwidth, m_iheight);
 	painter->drawText(0, 0, m_iwidth, m_iheight , Qt::AlignCenter, m_text);
+	QPen pen;
+	pen.setColor(Qt::red);
+	//pen.setBrush(QBrush(QColor(Qt::green)));
+	painter->setPen(pen);
+	painter->drawRect(boundingRect());
 	
 }
 
 
 void MyItem::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {	
-	QGraphicsItem::mouseMoveEvent(event);
-	if (zoombuttom != nullptr)
+	
+	if (father != nullptr && zoombuttom != nullptr)
 	{
+		QGraphicsItem::mouseMoveEvent(event);
 		zoombuttom->setPos(pos().rx() + m_iwidth, pos().ry());
 	}
 	drawLigature();
@@ -115,6 +144,16 @@ void MyItem::drawLigature()
 // 隐藏子节点
 void MyItem::hideOrShowChilds(MyItem* item)
 {
+	if (NULL == item)
+	{
+		return;
+	}
+
+	if (item->childs.size() == 0)
+	{
+		return;
+	}
+
 	for (size_t i = 0; i < item->childs.size(); i++)
 	{
 		hideOrShowChilds(item->childs[i]);
@@ -125,5 +164,30 @@ void MyItem::hideOrShowChilds(MyItem* item)
 			item->childs[i]->zoombuttom->setVisible(!item->childs[i]->zoombuttom->isVisible());
 		}
 	}
+}
+
+MyItem* MyItem::getChild(int index)
+{
+	if (childs.size()>index)
+	{
+		return childs[index];
+	}
+	return nullptr;
+}
+
+void MyItem::addChild(MyItem * child)
+{
+	childs.append(child);
+	if (child->father != nullptr)
+	{
+		child->level = child->father->level + 1;
+	}
+	else
+	{
+		child->level = 0;
+	}
+	
+
+	qDebug() << m_text << "add layout from " << child->m_text;
 }
 

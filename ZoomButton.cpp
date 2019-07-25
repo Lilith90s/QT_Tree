@@ -26,6 +26,7 @@ QRectF ZoomButton::boundingRect() const
 	return QRectF(0,0,m_width,m_height);
 }
 
+
 void ZoomButton::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
 	painter->drawRect(0, 0, m_width, m_height);
@@ -35,5 +36,6 @@ void ZoomButton::paint(QPainter * painter, const QStyleOptionGraphicsItem * opti
 	}else{
 		painter->drawText(0, 0, m_width, m_height, Qt::AlignCenter, "+");
 	}
+
 }
 

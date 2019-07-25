@@ -21,7 +21,7 @@ Curve::~Curve()
 
 QRectF Curve::boundingRect() const
 {
-	return QRectF(0,100,350,-100);
+	return QRectF(0,0,0,0);
 }
 
 void Curve::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
@@ -56,4 +56,10 @@ void Curve::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, Q
 	for (int i = 0; i < points.size(); ++i) {
 		painter->drawEllipse(points[i], 2, 2);
 	}
+
+	QPen pen;
+	pen.setColor(Qt::red);
+	//pen.setBrush(QBrush(QColor(Qt::green)));
+	painter->setPen(pen);
+	painter->drawRect(boundingRect());
 }

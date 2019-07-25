@@ -1,8 +1,8 @@
 ﻿#include "View.h"
 
-View::View()
+View::View(QWidget *parent):QGraphicsView(parent)
 {
-	resize(800, 600);
+	//resize(800, 600);
 	//scene.addText("");
 	//rectAngles = new RectAngles(squares);
 	//scene = new MyScene();
@@ -31,6 +31,7 @@ View::View()
 	n2_2->childs.append(n3_2_2);
 	scene = new MyScene(n1,800, 600);
 	setScene(scene);
+
 }
 
 

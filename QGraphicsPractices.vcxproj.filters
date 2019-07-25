@@ -51,12 +51,12 @@
     <ClCompile Include="ZoomButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyLayoutItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QGraphicsPractices.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ZoomButton.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="MyScene.h">
@@ -84,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ItemType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyLayoutItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoomButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

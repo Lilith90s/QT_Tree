@@ -14,19 +14,32 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <View.h>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_QGraphicsPracticesClass
 {
 public:
+    QVBoxLayout *verticalLayout;
+    View *graphicsView;
 
     void setupUi(QWidget *QGraphicsPracticesClass)
     {
         if (QGraphicsPracticesClass->objectName().isEmpty())
             QGraphicsPracticesClass->setObjectName(QStringLiteral("QGraphicsPracticesClass"));
         QGraphicsPracticesClass->resize(600, 400);
+        verticalLayout = new QVBoxLayout(QGraphicsPracticesClass);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        graphicsView = new View(QGraphicsPracticesClass);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+
+        verticalLayout->addWidget(graphicsView);
+
 
         retranslateUi(QGraphicsPracticesClass);
 
